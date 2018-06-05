@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CurCurFull</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+    <script src="testGo.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 150%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 1%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 0.2%;
+            margin-right: 0.2%;
+            margin-left: 0.2%;
+            border-radius: 10px;
+            box-shadow: 0 0 3px #999;
+        }
+        button:hover {
+            box-shadow: 0 0 10px #999;
+        }
+
+        li {
+            display: block;
+            text-align: left;
+            font-size: 50%;
+            margin: 0%;
+            margin-bottom: 1%;
+        }
+
+        p {
+            font-size: 70%;
+            display: inline-block;
+            -ms-wrap-margin: 10%;
+        }
+
+        a:visited {
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="insert">CurCurFull</h1>
+    <button id="but" onclick="streamGo()"> START Stream!!! </button>
+    <button style=background-color:#bd5e5e onclick="resetLi()">Reset List</button>
+    <button id="butTest" style=background-color:#bdaf5e onclick="testGo()">TestGo</button>
+    <p id="blinking">1. Включи ЗВУКК!!!!!!</p>
+    <p id="den">2. Cmd+Opt+J - console</p>
+
+    <audio id=audio src="cur.mp3" allow="autoplay" allow="preload"></audio>
+    <hr>
+    <ul id="lis">
+        <li id="list49"></li>
+        <li id="list48"></li>
+        <li id="list47"></li>
+        <li id="list46"></li>
+        <li id="list45"></li>
+        <li id="list44"></li>
+        <li id="list43"></li>
+        <li id="list42"></li>
+        <li id="list41"></li>
+        <li id="list40"></li>
+        <li id="list39"></li>
+        <li id="list38"></li>
+        <li id="list37"></li>
+        <li id="list36"></li>
+        <li id="list35"></li>
+        <li id="list34"></li>
+        <li id="list33"></li>
+        <li id="list32"></li>
+        <li id="list31"></li>
+        <li id="list30"></li>
+        <li id="list29"></li>
+        <li id="list28"></li>
+        <li id="list27"></li>
+        <li id="list26"></li>
+        <li id="list25"></li>
+        <li id="list24"></li>
+        <li id="list23"></li>
+        <li id="list22"></li>
+        <li id="list21"></li>
+        <li id="list20"></li>
+        <li id="list19"></li>
+        <li id="list18"></li>
+        <li id="list17"></li>
+        <li id="list16"></li>
+        <li id="list15"></li>
+        <li id="list14"></li>
+        <li id="list13"></li>
+        <li id="list12"></li>
+        <li id="list11"></li>
+        <li id="list10"></li>
+        <li id="list9"></li>
+        <li id="list8"></li>
+        <li id="list7"></li>
+        <li id="list6"></li>
+        <li id="list5"></li>
+        <li id="list4"></li>
+        <li id="list3"></li>
+        <li id="list2"></li>
+        <li id="list1"></li>
+        <li id="list0"></li>
+    </ul>
+
+    <script>
+        steem.api.setOptions({ url: 'wss://rpc.buildteam.io' });  //steem.api.setOptions({ url: 'https://api.steemit.com' }); старая медленная нода
+        var im = 0;
+        var massiveEnding = ['curie']
+        const FRIEND_LIST = ['afique', 'aksounder', 'alaynaclair', 'alemars16', 'alkhemst', 'allerie00', 'amritadeva', 'anibas', 'anikekirsten', 'animatrocities', 'appiepearl', 'ashidoodle', 'authorofthings', 'bex-dk', 'big.mama', 'bobydimitrov', 'brendahcaroline', 'cahoutek', 'callumogilvy', 'captainyeeha', 'carmalain7', 'chimtivers96', 'creativista', 'davidcheifetz', 'dduquette', 'dinavice', 'djh', 'driekus', 'ducksaplenty', 'edumurphy', 'energyaddict22', 'etemi', 'fabrews', 'felt.buzz', 'fivealive55', 'flaversham', 'flowish', 'givonwayne', 'graywinsler', 'greenacrehome', 'gremayo', 'hammaraxx', 'highwings', 'hilladigahackles', 'hundredlbsbeauty', 'ilhuna', 'imaginalex', 'innahandmade', 'isabellelauren', 'isaganispeaks', 'its.parth.hey', 'jadegreene', 'jaredkhamanah', 'javierdunn', 'jd-alden', 'jimfear138', 'jmcmeekin', 'johnkingwriter', 'joshuabaxter', 'jpgaltmiller', 'junebride', 'karunya', 'katarinazaja', 'katrina-ariel', 'katysavage', 'kendramoriah', 'korinkrafting', 'krishnendukj', 'kristyglas', 'llfarms', 'localprairie', 'lordnigel93', 'majorx3thom', 'markaustin', 'mattandcristina', 'matthewtiii', 'mayasky', 'meyerpaintings', 'mightyjoenolan', 'mk3jetta', 'monopolytile', 'mrbloom', 'nameless-berk', 'nexrules', 'nobyeni', 'nostone-unturned', 'notjohndaker', 'oyvindsabo', 'rachelrick', 'raghavgakhar', 'randomwanderings', 'robali123', 'robbieallenart', 'rodznocturne', 'rslabbert', 'samsmithson', 'saysme', 'sebavdp', 'stephie.spicer', 'suzanrs', 'svemirac', 'syndicateframes', 'the.artist-98', 'thegaillery', 'tonypapa', 'torico', 'truthtalks', 'tysonjames', 'ursa', 'valensia', 'vermis', 'visualgabry', 'walkerland', 'wandersells', 'wildlyintrepid', 'zipporah', 'chainsaw-clausen', 'afrao0', 'alannapendragon', 'alevaskye', 'alexeyvoron', 'ameliabartlett', 'amymya', 'anarchojeweler', 'andrew.tischler', 'antoniokarteli', 'art-huntress', 'art-mess', 'art.life', 'bardoflore', 'berksaustins', 'blancosvg', 'brandt', 'branhmusic', 'byiriss', 'cartoonistpandan', 'christiesnelson', 'connie1018', 'craigtransforms', 'damianjayclay', 'danielapetk', 'danmaruschak', 'demonsthenes', 'denis.savisko3', 'derekkind', 'dioncrediblehulk', 'edouard', 'eetyyudeme', 'eriluks', 'fluffywiggle', 'foodgurutu', 'geekorner', 'guytmartland', 'hellfire-labs', 'hetty-rowan', 'iamflow', 'iamhbros', 'innerdialogue', 'ivan.atman', 'jamesartville', 'jasonbu', 'jeffstoner', 'jonathansippel', 'jonpetrich', 'joshuathomasgray', 'jshmu', 'kiekie', 'lavidaesunviaje', 'lichtcatchtoby', 'lowf1ux', 'lymepoet', 'm4deline', 'madmaxfury', 'magistra', 'marcgilles', 'marinaart', 'mazzle', 'misterakpan', 'mogatiexperiment', 'moiseslink', 'mr-monk', 'mrprecious', 'mtnmeadowmomma', 'mydas', 'namranna', 'neeqi', 'noellesevilla', 'ostrovskajah', 'pgarama', 'piepur', 'pizzanniza', 'r00sj3', 'rahmadantara', 'rasgriz311', 'rial17', 'rizqiah', 'saintchristopher', 'samanthajbarnes', 'sarahvain', 'sethlinson', 'shannonbarber', 'shlomit', 'smith-house', 'spalatino', 'spc', 'stanhopeofficial', 'steampunk-penny', 'steemsausage', 'sweetpea358', 't2tang', 'thebugiq', 'theinsideout', 'therusticvegan', 'thewizard.life', 'tinypaleokitchen', 'tropicalwolf79', 'uv10', 'viralcutz', 'warpedpoetic', 'xanderslee', 'xwalkran', 'yannay', 'ybanezkim26', 'zeroooc', 'zipplyo', 'adamicelli', 'allenaxie', 'amariespeaks', 'anouk.nox', 'appleskie', 'apsistrading', 'atomcollector', 'aussieninja', 'awakentolife', 'beta.and.cool', 'biffybirdcam', 'bowentroyer', 'brimwoodfarm', 'byrongrant', 'cabelindsay', 'calathea', 'cinemaninja', 'crisfitlifestyle', 'cstrimel', 'dissfordents', 'ejlo3310', 'elohprojects', 'evilhippie', 'fitdoc', 'foragingquietude', 'freewheel', 'gingergeorge', 'glomarresponder', 'guchtere', 'hannahimsa', 'hellosusu', 'hglucky13', 'hika', 'imperialaussie', 'ivoryss', 'j-lee', 'jagged', 'japh', 'jeembob', 'jhezontheroad', 'jillustrations', 'johnfist', 'jrhughes', 'justjessica', 'keeperofthewoods', 'lalilands', 'lamegliogioventu', 'legendarryll', 'leoblaze', 'lextenebris', 'libertylemon', 'ligarayk', 'lilbirdie', 'martinsandersuk', 'mindscapephotos', 'mitchhunter', 'mstafford', 'nuridin', 'offbeatbroad', 'okramer', 'onejwells13', 'onethousandwords', 'orrslaw', 'pegasusphysics', 'planetauto', 'powellx5', 'qyugmo', 'raoul.poenar', 'redwellies', 'sazzler', 'schoonercreek', 'seangold', 'serarious', 'shawndove', 'stevethevagabond', 'storycharlemagne', 'sukhasanasister', 'sumatranate', 'surfknasen', 'taraorlin', 'tayanasimons', 'teeheecakesph', 'terry93d', 'themomlook', 'theodora.austria', 'therovingreader', 'tonie', 'travelling-two', 'ucsdsu', 'vera.carla', 'watersnake101', 'wilins', 'wisewoof', 'witchguard', 'xramonahx', 'aa10', 'abgmie', 'abyni', 'amalinavia', 'april-eliza', 'archerbest', 'audreycontreras', 'austinhopper', 'awesomeabasiono', 'axeman', 'bennettitalia', 'best-trip-eva', 'billsurf', 'bluebottlefilms', 'caleblailmusik', 'candidfolly', 'chadrickm', 'chaifm', 'cookiespooky', 'creationofcare', 'csusbgeochem1', 'cynicaloptimist', 'davids-tales', 'dijana969', 'dillemma', 'dispatches', 'domioanna', 'donnymurph', 'drjessemeyer', 'drwatson', 'earthangel', 'edenmichelle', 'ellyn-suraya', 'exploreadelaide', 'exploreand', 'explorer93', 'fikrahaikal', 'fukumineko', 'gaber', 'geekpowered', 'gems.and.cookies', 'gordon92', 'hillaryaa', 'imkareencajes', 'imlikett', 'izziqbal', 'jaro-art', 'jayna', 'jeanwandimi', 'jeffways', 'josie2214', 'kanabeatz', 'lesshorrible', 'luisferchav', 'luthvarian', 'marc-allaria', 'melodyrussell', 'multi4g', 'natubat', 'neonartist', 'noughtshayde', 'occupywallets', 'paradigmprospect', 'phantum04', 'poss', 'postandbeam82', 'quanahjayhicks', 'ravenruis', 'redmaidenart', 'rifkan', 'romanskv', 'sallyswitchblade', 'savetheanimals', 'senzenfrenz', 'serapium', 'shai-hulud', 'shote.said', 'siren87', 'skinnes', 'skullyzard', 'soulturtle', 'srba', 'stochasticmind', 'tam-lin', 'thekittygirl', 'thesimpson', 'thisisjaimee', 'timesedge', 'tninh', 'zirochka', 'ajmaln', 'akmalbastamam', 'anasav', 'artofsteempunk', 'artopium', 'aurah', 'axynos', 'beyondordinary', 'brisby', 'bvltva', 'chairulfadlin', 'citizenzero', 'cryptocreative', 'dbooster', 'druids', 'dwightjaden', 'ehmkannde', 'ellebravo', 'explorernations', 'finkistinger', 'fona', 'funmiakinpelu', 'gaelle.spaas', 'ghostcodedev', 'gretum', 'hadro', 'hanajones', 'hato', 'himeshanand', 'hmt', 'huslein.slash', 'hydroconomist', 'intrepidphotos', 'jameszenartist', 'jealousyjane', 'jeseemei', 'jpphotography', 'julianworker', 'macam.yes', 'medicinemerchant', 'mibreit-photo', 'mladenpaunovic', 'morningtundra', 'ngfx', 'nikkicole', 'okylxx', 'olaivart', 'omegamovement', 'piratefoodco', 'ralleur', 'rambai', 'revo', 'rfece143', 'rogeviolinista', 'romacarter0254', 'roomerkind', 'senorcoconut', 'skiesandsports', 'skycranehandwork', 'squishysquid', 'steef-05', 'stephennevets', 'tarc', 'terminalblue', 'theferalone', 'tikhub', 'tomatom', 'travelingmercies', 'traveltramp', 'vladcostea', 'williamtangofox', 'zhafiqkun', 'adevaesparrago', 'anthonywong', 'arrelaine13', 'aschatria', 'atmemestable', 'avesa', 'azbeen', 'boompanot', 'bridget.art', 'byn', 'camzy', 'carolynstahl', 'carpieeew', 'chelseajo', 'd-bumblebee', 'dapperdadclub', 'deagonvegan', 'debralee', 'deerjay', 'derekrichardson', 'dfrankle', 'drawingwithflare', 'dxn', 'ellicia', 'elseleth', 'evacprocedure', 'feedmylife', 'fermentedphil', 'foodflaneur', 'growlithe', 'hanbun', 'hboi', 'injiskitchen', 'itsnicoletv', 'jamesnater', 'jh3n', 'juliane', 'karenfoster', 'katkatart', 'kayclarity', 'kenanqhd', 'kennik', 'khenbee', 'kiloindigo', 'kindstranger', 'kylaki', 'leryam12', 'lostinhappiness', 'lymmerik', 'maggie51', 'meliorish', 'mikeycolon', 'milosm2302', 'mutitum', 'neumannsalva', 'nirtsfaty', 'nofatnowhip', 'nuclearsalad', 'papaudeme', 'paulthebeloved', 'raptordashzero', 'ray.luv.music', 'reiban', 'roadsuntraveled', 'royalrose', 'sagescrub', 'sanjeevblogs', 'scoffins', 'shibasaki', 'shootout', 'shuazir', 'simplylizelle', 'tamacvet', 'tateshep', 'thehomeschoolkid', 'tiloupsa', 'travelin-girl', 'tt-dogg', 'veganroma', 'venomnymous', 'voder', 'vonhandfotografy', 'whitewizard', 'zincali', 'adelepazani', 'ajremy', 'aleluzdosol77', 'applehoang', 'artbycheyenne', 'artbyclark', 'ashleynau', 'avivakohen', 'awolesigideon', 'axios', 'besick', 'bimaa', 'birchmark', 'brianlewis', 'budgettraveler', 'burkulese', 'claratymusic', 'conradsuperb', 'cptn.naresh', 'crystalize', 'daydreaming', 'doublelift', 'elinedr', 'emdesan', 'endorphoenix', 'equites', 'esaia.mystic', 'farq', 'fashionlink', 'fireawaymarmot', 'fixedbydoc', 'freistaat', 'funtraveller', 'happyolly', 'hidden84', 'highfrequencies', 'howmanymiles', 'jcalumpit', 'jmvaron0', 'joedukeg', 'joxus', 'justgoscha', 'kalopsia', 'kaseymccoy', 'katarinamiliv', 'kokibyivana', 'lukas.bra', 'marcoriccardi', 'mattletch', 'moderndragon', 'mostvulnerable', 'mountainjewel', 'mr-neil', 'nearbird', 'nessyquel', 'nomadrituals', 'nuruto21', 'official-hord', 'omonosa', 'pennyroll', 'peppe', 'proteus-h', 'rebeca.just20', 'rebeccamqamelo', 'redpillvegan', 'rehanrhapsody', 'robertonavs', 'ronism', 'sabatini', 'sanjeevm', 'shakthi', 'slvart', 'soorefunmi', 'soundwavesphoton', 'superherogamesq', 'tahorfarm', 'terrorfirma', 'thegiamarcos', 'theleafy', 'thenamadicway', 'travelgasm', 'vincentleroy', 'yahialababidi', 'aejackson', 'afzal-anees', 'alieke', 'arthur.grafo', 'bonaventurehoste', 'booksandbeauty', 'bushkill', 'buttcoins', 'camposmusing', 'castleberry', 'causanova', 'corinneiskorean', 'cshuck1970', 'damm-steemit', 'deadsparrow', 'diezeldiddy', 'dubson', 'eldergill', 'elsbeth-upton', 'esaug', 'gjcooper', 'hatsekidee', 'helenelenoble', 'jghomestead', 'johnelder-org', 'joordanzzz', 'jordan.lesich', 'kate-m', 'kcire', 'kdee916', 'kneelyrac', 'ladybug146', 'limabeing', 'liverehab', 'lovablesoul', 'madviking', 'maeva', 'malvarezmusic', 'mashla', 'monkeypattycake', 'nanastraybutt', 'nikonmarshall', 'nirgf', 'ofearthandhearth', 'olivescafe', 'omstavan', 'pdxgal', 'producedbymood', 'rags-riyad', 'ritzzard', 'riyansyahbp', 'robertlyon', 'sahana-yoga', 'sahrodion', 'sandrina.life', 'shinyforest', 'suluz', 'swilkinstunes', 'tensor', 'vincentnijman', 'voiceofnature', 'wahyunahrul', 'walterxp', 'xhodan', 'yanga', 'yourmate', 'zen1982', 'adamsays', 'allanshrestha', 'amjedriyad', 'beatseb', 'btcnoodle', 'celestal', 'ceparl', 'cheech-oz', 'ckurtish', 'crosswell', 'curivitas', 'deeday31', 'designthinking', 'divasafitrii', 'doodrun', 'elfleda', 'elzed', 'florence1993', 'g-force1980', 'gamezine', 'gardeningchef', 'gladysstillwagon', 'gotgame', 'grafinx', 'homesteaddad', 'inalittlewhile', 'jlsplatts', 'jny.untraveled', 'johnnycopper1', 'jssdigital', 'julesdan', 'justatouchfey', 'kevbot', 'kondor1030', 'kusatsuri', 'l82matthew182', 'la-fumettista', 'leminhead', 'littlejoeward', 'lizzyb', 'lordnigel', 'magiccleatus', 'mama-imee', 'markmorbidity', 'mathfortress', 'meetmysuperego', 'mfxae86', 'michaelkingswood', 'mitneb', 'moaphotography', 'modrzew', 'mooshoo', 'mwoodall', 'nadabrahmasounds', 'neilb', 'ninolatino', 'offgridnation', 'oreille-pointue', 'pauladrian', 'plumey', 'rebelbuddha', 'reisronddewereld', 'ricknassar', 'ryneb', 'ryunamist', 'saunter', 'shezsheikh', 'soul.searching', 'spaceballoon', 'spikeonspikeg', 'thatkidsblack', 'the-vile-maxim', 'thecatinthebox', 'theodorelib', 'thomhoglen', 'titangel', 'toushik', 'troshmoney', 'vitalmistake', 'wolfje', 'yannis182', 'ysj', 'aaronleang', 'amavi', 'bobinson', 'chimzycash', 'coquiunlimited', 'csbegu', 'danscottfineart', 'daviddawei', 'dpatcher', 'drsinmongwong', 'drwillwho', 'ella-kay', 'ezravancil', 'fernowl13', 'geniusloci', 'hendrikcrause', 'jeremycrow', 'josiahthomas', 'juliusfatai', 'karinxxl', 'katrinalewis', 'katyak', 'ladysnowhite', 'lifebeyondgaming', 'lires', 'lorenzohagerty', 'maple-thunder', 'martaesperanza', 'marvel1206', 'myart', 'nicole.jay', 'niobe', 'notimetospace', 'oldmanmordaith', 'onetruebrother', 'oozora', 'petermarie', 'philippbuxbaum', 'philosimator', 'pinstory', 'pixelminx', 'raj808', 'road2nowhere', 'schmevepoobly', 'shomophoto', 'silasdavid', 'sireh', 'skippyza', 'sonjavelvet', 'soykatonline', 'stickchumpion', 'strugglingdiy', 'sultnpapper', 'sun-flower', 'tanglebranch', 'thehypnotist', 'tlg-art', 'tlthornes', 'travisacid', 'vesislava', 'vibeof100monkeys', 'writerbro', 'afifa', 'alejandra23', 'amyblue', 'annamur', 'arteadictorals', 'beatitudes8', 'boomerangbread', 'bsteelemyart', 'bypic', 'capone145', 'cejero021', 'cobmaximus', 'creativity101', 'dubvdave', 'e13c7r0n', 'ediah', 'edzynda', 'faithwrites', 'finkenchris', 'fjodde', 'florian-glechner', 'g10a', 'gamingstation', 'grownfolksgaming', 'guitarlots', 'gyro', 'harulovesanime', 'hiccup09', 'homelesspepper', 'hurricanepike', 'i-juggler', 'imdiana', 'ivancuyag']
+
+        //streamGo()  //убрать, если хо с кнопки запуск
+        function streamGo() { // запуск и проверка, пост ли это
+            console.log("CurCurFull: stream GO")
+            document.getElementById("but").innerHTML = "Started"; 
+            document.getElementById("but").style.backgroundColor = "brown";
+
+            steem.api.streamTransactions('irreversible', function (err, result) {
+                if(err!==null){
+                    console.log('!!!!!!!! Вот словилась ошибочка:', err)
+                }   
+                let txType = result.operations[0][0]
+                var txData = result.operations[0][1]
+                
+                //, вычислим что в txData result.operations[0][1], в каком формате
+                //console.log(txData)
+                //return
+                //
+
+                if (txType == 'comment') {
+
+                    checkAuthor(txData)
+                }
+
+            })
+        };
+
+                        //глянуть get transaction function in steemit api
+                        //сюда вкорячить свой пост, который хо анализировать. в формате result.operations[0][1] нужного поста.
+                        //все, что выше - отключить
+
+
+        var howMuchWords = 300;     // больше чем сколько слов
+        var minRatingForStory = 50
+        var howMuchPictures = 4;       // больше чем сколько картинок
+        var howMuchVideos = 0;          // больше чем столько видео
+
+        function checkAuthor(txData) {      // тут теги можно добавить
+            if (txData.parent_author == '') {
+                var words = txData.body.split(" ").length - 1
+                var pics = txData.body.split(".jpg").length - 1 + txData.body.split(".jpeg)").length - 1 + txData.body.split(".png)").length - 1;
+                var dtube = txData.body.split(".https://d.tube/").length - 1;
+                var youtubeLong = txData.body.split('https://www.youtube.com/').length - 1;
+                var youtubeShort = txData.body.split('https://youtu.').length - 1;
+                var youtube = youtubeLong+ youtubeShort+dlive;
+                var dlive = txData.body.split('https://dlive').length - 1;
+                var videos = dtube + youtube + dlive
+                var includeTags = ['story', 'writing', 'poem', 'fiction', 'reading', 'travel', 'art', 'drawing', 'music', 'photography', 'blog', 'steemit', 'goodmorning', 'mobilephotography', 'openmic', 'nature', 'steemitbloggers', 'life']  //включая теги
+                var excludeTags = ['auction', 'cryptocurrency','trading', 'ico','bible', 'steemchurch', 'aceh', 'provenezuela', 'bilingual', 'promo-steem', 'ramadhan', 'pokersteem']                // исключая теги
+                lanLetters = ['ä','ş','ć','人','っ','到','á', 'ó', ' Kami ', 'ك', 'ژ', 'গ', 'ছ', 'ঙ', 'ঝ', "ñ", "ó", "í", "ó", "í", "á", "¿", "¡", "à", "ú", 'ü', 'რ', 'ယ', 'я', 'д', ' akan ', ' ini ', 'ž', 'ม', '이', 'बे']    // запрет буквы, слова, языки
+                for (i = 0; i < lanLetters.length; i++) {
+                    lan = txData.body.split(lanLetters[i]).length - 1;
+                    if (lan > 0) {
+                        //console.log('!!!!! Worng language, found:',lanLetters[i],'return')
+                        return
+                    }
+                }
+
+                if (words > howMuchWords && pics > howMuchPictures || words > 600 && pics > 2 || youtube > howMuchVideos && words > 10) {  // проверка сколько слов, картинок, видео есть ли
+                    var allTags = JSON.parse(txData.json_metadata)
+                    for (var i = 0; i < allTags.tags.length; i++) {          //  если нету тегов и есть нужные теги
+                        var match = includeTags.indexOf(allTags.tags[i])
+                        var match2 = excludeTags.indexOf(allTags.tags[i])
+                        //if (match != -1) {     //отключил "если не совпали теги"
+                            if (match2 != -1) {
+                                return
+                            }
+                            //console.log('!!!!!!!!!!!!!','allTags',allTags.tags,'match',match,'match2',match2)
+                            //sendVote(txData)
+                        //}
+
+                    }
+                    sendVote(txData)
+                }
+            }
+        }
+
+
+        function sendVote(txData) {   // тут настраивается кюри воуты, регулярность автора проверка
+
+            howMuchMoney = 20 //20 было
+            howMuchDays = 19  //21 было
+            howMuchPosts = 50 // сколько постов вытягиваем (если больше - не страшно)
+            howMuchDays5daysPost = 60; var postNumb = 1;  //сколько дней назад был 5й пост
+            howMuchMinRep = 35; // мин репутация
+            massive = []
+            var fromAcc = txData.author
+
+            steem.api.getDiscussionsByAuthorBeforeDate(fromAcc, null, new Date().toISOString().split('.')[0], howMuchPosts, function (err, result) {
+                var ii = 0;
+                author_reputation = result["0"].author_reputation
+                authRep = ((Math.log10(author_reputation) - 9) * 9 + 25)     // если репутация меньше заданной
+                if (authRep < howMuchMinRep) {
+                    return
+                }
+                massive[fromAcc] = result
+
+                var howMuchHiHad = massive[fromAcc].length
+                if (howMuchHiHad >= postNumb) { // сколько дней назад был 2й пост
+                    //console.log("stage7 - if he had more than 1 post");
+                    var postNumbCreated = Date.parse(massive[fromAcc][postNumb].created)
+                    var dateNow = new Date();
+                    var timeIsNow = new Date(dateNow.getTime() + dateNow.getTimezoneOffset() * 60000);
+                    var postNumbAge = (timeIsNow - postNumbCreated) / 1000 / 60 / 60 / 24; // days ago
+                    if (postNumbAge > howMuchDays5daysPost) {
+                        //console.log("stage8 - if if 2nd post older than 60 days postNumbAge is:", postNumbAge);
+                        return
+                    }
+                }
+
+
+
+
+                for (h = 0; h < howMuchHiHad - 1; h++) {    // проверить макс за 7 дней
+                    //console.log("stage9 - max pay for 7 days")
+                    var borderDate = 7 // если дата меньше недели, проверить фидпрайс не больше 30
+                    var maxRecentReward = 23  // максимальный фидпрайс поста за последнее borderdate дней
+                    var currentPendingReward = parseFloat(massive[fromAcc][h].pending_payout_value)
+                    var currentTotalReward = parseFloat(massive[fromAcc][h].total_payout_value)
+                    //console.log("stage9.2 - currentPendingReward:", currentPendingReward, "> maxRecentReward", maxRecentReward, "или, currentTotalReward:", currentTotalReward, "> maxRecentReward", maxRecentReward, )
+
+                    if (currentPendingReward > maxRecentReward || currentTotalReward > maxRecentReward) {
+                        return
+                    }
+                }
+                var howMuchLikes = massive[fromAcc][h].active_votes.length
+                //console.log("stage10 - how much likes curie ", fromAcc)
+                for (i = 0; i < howMuchLikes - 1; i++) {
+                    //console.log("stage10.0.0.1 check ", i, "post", fromAcc)
+                    if (massive[fromAcc][h].active_votes[i].voter.indexOf("curie") == 0) {
+                        var dateNow = new Date();
+                        var timeIsNow = new Date(dateNow.getTime() + dateNow.getTimezoneOffset() * 60000);
+                        var likeCreated = Date.parse(massive[fromAcc][h].active_votes[i].time)
+                        var likeAge = (timeIsNow - likeCreated) / 1000 / 60 / 60 / 24; // days ago
+                        var moneyAtAll = parseFloat(massive[fromAcc][h].curator_payout_value) + parseFloat(massive[fromAcc][h].total_payout_value) + parseFloat(massive[fromAcc][h].pending_payout_value)
+                        //console.log("stage10.0.1 - ", fromAcc, "likeAge:", likeAge, "< howMuchDays", howMuchDays)
+
+                        if (likeAge < howMuchDays) {
+                           // console.log("stage10.1 - likeAge:", likeAge, Date.parse(timeIsNow), likeCreated, "< howMuchDays", howMuchDays)
+                            return
+                        }
+
+                        if (moneyAtAll < howMuchMoney) {
+                            return
+                        }
+                       ii = i;
+                       //if (!value) break;
+                    }
+                }
+                var matchMassiveEnding = massiveEnding.indexOf(massive[fromAcc][0].permlink)
+                if (matchMassiveEnding > -1) {
+                    //console.log("повторился, редачился",massiveEnding.indexOf(massive[fromAcc][0].permlink),"раз - ",massive[fromAcc][0].permlink)
+                    return
+                }
+                massiveEnding.push(massive[fromAcc][0].permlink)
+                
+                if(document.getElementById("butTest").style.backgroundColor == "red"){
+                    console.log('test: GOOD POST')
+                    document.getElementById("butTest").style.backgroundColor = "green" 
+                }
+                //console.log(massive[fromAcc][h].active_votes[ii])
+                console.log(`Curie liked https://steemit.com/@${fromAcc}/${massive[fromAcc][0].permlink} this acc at ${massive[fromAcc][h].active_votes[ii].time} (${likeAge} days ago) & money = ${moneyAtAll}, now is ${timeIsNow}`)
+
+                audio.play();
+
+
+                document.getElementById(`list${im}`).innerHTML = `${im + 1}. <a href=https://steemit.com/@${fromAcc}/${massive[fromAcc][0].permlink} target="_blank"> @${fromAcc}/${massive[fromAcc][0].permlink} posted ${massive[fromAcc][h].active_votes[i].time} (curie liked ${likeAge} days ago for ${moneyAtAll}$), now is ${timeIsNow}</a>`;
+
+                if (im < 49) {
+                    im++;
+                    return (im)
+                }
+                else {
+                    im = 0
+                    return (im)
+                }
+
+            });
+
+        }
+
+    </script>
+
+
+    <script>                                                     //менять цвет, размер фразы "кликни"
+        var p = document.getElementById("blinking");
+        setInterval(function () {
+            if (p.style.color == "white") { return }
+            else {
+                if (p.style.color != "brown") {
+                    p.style.color = "brown"
+                } else {
+                    p.style.color = "red";
+                }
+            }
+        },
+            200);
+        p.onclick = function () {
+            p.style.color = "white";
+            /* document.getElementById("insert").innerHTML = "Good job!";*/
+        }
+
+        function resetLi() {
+            for (im = 49; im > -1; im--) {
+                document.getElementById(`list${im}`).innerHTML = "";
+            }
+            im = 0;
+            return (im);
+        }
+
+       /* a();          // проверка функции return
+        function a() {
+            var a = 5
+            var b = 10
+            c()
+            function c() {
+                if (a < b) {
+                return
+                }
+            }
+
+            console.log(a + b)
+
+        } */
+    </script>
+</body>
+
+</html>
